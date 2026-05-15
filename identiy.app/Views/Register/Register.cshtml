@@ -1,0 +1,46 @@
+﻿@model identity.entity.ViewModels.RegisterViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Sayfası</title>
+</head>
+<body>
+
+<h2>Kayıt Ol</h2>
+
+<form method="post">
+      
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label asp-for="Username">Kullanıcı Adı</label>
+    <input asp-for="Username" type="text" class="form-control" />
+    <span asp-validation-for="Username" class="text-danger"></span>
+
+    
+      
+    <label asp-for="Password">Şifre</label>
+    <input asp-for="Password" type="password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+
+    <br /><br />
+
+    <label asp-for="Password">Şifre (Tekrar)</label>
+    <input asp-for="Password" type="password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+
+    <br /><br />
+
+    <button type="submit">Kayıt Ol</button>
+        
+    <button type="button" onclick="location.href='/login/index'">
+        Giriş Sayfasına Dön
+    </button>
+    
+</form>
+
+</body>
+</html>

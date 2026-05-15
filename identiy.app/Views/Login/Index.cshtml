@@ -1,0 +1,37 @@
+﻿@model identity.entity.ViewModels.UserViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Sayfası</title>
+</head>
+<body>
+
+<h2>Giriş Yap</h2>
+
+<form method="post">
+      
+    <label asp-for="UserName">Kullanıcı Adı</label>
+    <input asp-for="UserName" type="text" class="form-control" />
+    <span asp-validation-for="UserName" class="text-danger"></span>
+
+    <br /><br />
+      
+    <label asp-for="Password">Şifre</label>
+    <input asp-for="Password" type="password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+
+    <button type="submit">Giriş</button>
+        
+    <button type="button" onclick="location.href='/register/register'">
+        Kayıt ol
+    </button>
+    
+    <h2>@ViewBag.message</h2>
+</form>
+
+</body>
+</html>
