@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
@@ -9,9 +9,10 @@ namespace identity.entity.JwtRegistration;
 public static class Registration
 {
 
-    public static IServiceCollection AddJwt(this IServiceCollection services )
+    public static IServiceCollection AddJwt(this IServiceCollection services,IConfiguration configuration )
     {
-        var key = Encoding.ASCII.GetBytes("12345678901234567890123456789012");
+        var secretKey =  configuration["JwtSettings:SecretKey"];
+        var key = Encoding.ASCII.GetBytes(secretKey!);
         services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

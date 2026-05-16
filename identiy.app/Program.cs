@@ -5,19 +5,22 @@ using identity.entity.JwtRegistration;
 using identiy.app.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens; 
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<EmailService>();
 //jwt burada ekleniyor
-builder.Services.AddJwt();
+builder.Services.AddJwt(builder.Configuration);
 
 
 

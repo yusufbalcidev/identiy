@@ -8,11 +8,8 @@ namespace identity.entity.Context; // <--- Namespace düzeltildi
 public class AppDbContext : IdentityDbContext<AppUser, AppRole, int>
 {
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-        
-        optionsBuilder.UseSqlServer(
-            "Server=.\\SQLEXPRESS;Database=identitydbnew;Trusted_Connection=True;TrustServerCertificate=True");
     }
     
     protected override void OnModelCreating(ModelBuilder builder)

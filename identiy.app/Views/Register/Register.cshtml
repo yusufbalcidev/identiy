@@ -6,41 +6,51 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Kayıt Sayfası</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
 
-<h2>Kayıt Ol</h2>
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-gray-800">Hesap Oluştur</h2>
+            <p class="text-gray-500 text-sm mt-2">Sisteme katılmak için bilgilerinizi girin</p>
+        </div>
 
-<form method="post">
-      
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" class="space-y-4">
+            
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4 bg-red-50 p-2 rounded"></div>
 
-    <label asp-for="Username">Kullanıcı Adı</label>
-    <input asp-for="Username" type="text" class="form-control" />
-    <span asp-validation-for="Username" class="text-danger"></span>
+            <div>
+                <label asp-for="Username" class="block text-sm font-medium text-gray-700 mb-1">Kullanıcı Adı</label>
+                <input asp-for="Username" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
+                <span asp-validation-for="Username" class="text-red-500 text-xs mt-1 block"></span>
+            </div>
 
-    
-      
-    <label asp-for="Password">Şifre</label>
-    <input asp-for="Password" type="password" class="form-control" />
-    <span asp-validation-for="Password" class="text-danger"></span>
+            <div>
+                <label asp-for="Password" class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
+                <input asp-for="Password" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
+                <span asp-validation-for="Password" class="text-red-500 text-xs mt-1 block"></span>
+            </div>
 
-    <br /><br />
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Şifre (Tekrar)</label>
+                <input asp-for="Password" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
+                <!-- Not: ViewModel'de PasswordConfirm gibi bir alanınız varsa onu kullanmanız daha doğru olur -->
+                <span asp-validation-for="Password" class="text-red-500 text-xs mt-1 block"></span>
+            </div>
 
-    <label asp-for="Password">Şifre (Tekrar)</label>
-    <input asp-for="Password" type="password" class="form-control" />
-    <span asp-validation-for="Password" class="text-danger"></span>
-
-    <br /><br />
-
-    <button type="submit">Kayıt Ol</button>
-        
-    <button type="button" onclick="location.href='/login/index'">
-        Giriş Sayfasına Dön
-    </button>
-    
-</form>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition font-medium mt-6">Kayıt Ol</button>
+            
+            <div class="text-center mt-4">
+                <button type="button" onclick="location.href='/login/index'" class="text-sm text-gray-600 hover:text-blue-600 hover:underline transition">
+                    Zaten bir hesabınız var mı? Giriş yapın
+                </button>
+            </div>
+            
+        </form>
+    </div>
 
 </body>
 </html>
