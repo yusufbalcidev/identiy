@@ -13,11 +13,12 @@ public class LoginController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
-
-    public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+private readonly IConfiguration _configuration;
+    public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _configuration = configuration;
     }
 
 
@@ -50,8 +51,10 @@ public class LoginController : Controller
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("12345678901234567890123456789012"));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var secretKey =  _configuration["JwtSettings:SecretKey"];
+            var key = Encoding.ASCII.GetBytes(secretKey!);
+            var symmetricSecurityKey = new SymmetricSecurityKey(key);
+            var creds = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 issuer: null,
