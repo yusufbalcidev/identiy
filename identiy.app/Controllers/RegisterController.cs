@@ -23,14 +23,13 @@ public class RegisterController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
-   
         var newUser = new AppUser
         {
             UserName = model.Username,
             Email = model.Email
         };
 
-   
+
         var result = await _userManager.CreateAsync(newUser, model.Password);
 
         if (result.Succeeded)
@@ -39,14 +38,13 @@ public class RegisterController : Controller
             ViewBag.Message = "Kayıt tamamlandı giriş yapabilirsiniz.";
             return View();
         }
-        else
+
+
+        foreach (var error in result.Errors)
         {
-        
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-            return View(model);
+            ModelState.AddModelError(string.Empty, error.Description);
         }
+
+        return View(model);
     }
 }
