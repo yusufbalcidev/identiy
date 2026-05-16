@@ -1,7 +1,9 @@
 using System.Text;
 using identity.entity.Model;
 using identity.entity.Context;
+using identiy.app.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens; 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,11 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddIdentity<AppUser, AppRole>()
-    .AddEntityFrameworkStores<AppDbContext>(); 
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+builder.Services.AddScoped<EmailService>();
+
 
 var key = Encoding.ASCII.GetBytes("12345678901234567890123456789012");
-
-
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
