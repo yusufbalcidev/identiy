@@ -31,4 +31,9 @@
       <_ContentIncludedByDefault Remove="Views\SendMail\ResetPassword.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="SendMail\ForgotPassword.cshtml" />
+      <AdditionalFiles Include="SendMail\ResetPassword.cshtml" />
+    </ItemGroup>
+
 </Project>
