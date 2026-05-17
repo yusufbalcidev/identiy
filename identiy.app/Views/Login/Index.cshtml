@@ -7,57 +7,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yap</title>
+    <title>EKA Enerji - Giriş Yap</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+<body class="min-h-screen flex items-center justify-center p-4">
 
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <!-- Ana Kart Konteyneri -->
+    <div class="bg-white w-full max-w-[420px] p-8 sm:px-10 sm:py-10 rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100">
+        
+        <!-- Logo ve Başlık Bölümü -->
         <div class="text-center mb-8">
-            <h2 class="text-2xl font-bold text-gray-800">Hoş Geldiniz</h2>
-            <p class="text-gray-500 text-sm mt-2">Lütfen hesabınıza giriş yapın</p>
+            <!-- Logo İkonu ve Yazısı -->
+            <div class="flex justify-center items-end gap-1 mb-1">
+                <svg width="46" height="38" viewBox="0 0 50 40" class="mb-1 -mr-1">
+                    <path d="M 5 30 L 5 15 L 25 5 L 45 5" fill="none" stroke="#d32f2f" stroke-width="5" stroke-linejoin="round" stroke-linecap="square"/>
+                    <path d="M 5 30 L 25 30 L 25 18 L 45 18" fill="none" stroke="#65a30d" stroke-width="5" stroke-linejoin="round" stroke-linecap="square"/>
+                </svg>
+                <h1 class="text-[48px] font-black text-[#26428b] leading-[0.8] tracking-[-0.05em]">EKA</h1>
+            </div>
+
+            <!-- Alt Şirket İsimleri -->
+            <p class="text-[#65a30d] font-bold text-[13.5px] tracking-wide mt-2">
+                ENERJİ VE TEKNOLOJİ A.Ş.
+            </p>
+            
+            <!-- Çizgili Alt Bilgi -->
+            <div class="flex items-center justify-center gap-2 mt-2">
+                <div class="h-[1px] bg-gray-400 w-8"></div>
+                <p class="text-[8px] font-bold text-gray-800 tracking-wider">
+                    EMLAK KONUT GYO A.Ş. KURULUŞUDUR
+                </p>
+                <div class="h-[1px] bg-gray-400 w-8"></div>
+            </div>
         </div>
 
-        <form method="post" class="space-y-4">
+        <!-- Form Başlığı -->
+        <h2 class="text-center text-[18px] font-bold text-[#1f2937] leading-snug mb-6">
+            EKA Enerji Dijital Sistem Giriş<br>Paneli
+        </h2>
+
+        <!-- Giriş Formu -->
+        <form method="post">
             
-            <div>
-                <label asp-for="UserName" class="block text-sm font-medium text-gray-700 mb-1">Kullanıcı Adı</label>
-                <input asp-for="UserName" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
+            <!-- Kullanıcı Adı Alanı -->
+            <div class="mb-4">
+                <label asp-for="UserName" class="block text-[13px] font-medium text-gray-700 mb-1.5">Kullanıcı Adı</label>
+                <input 
+                    asp-for="UserName" 
+                    type="text" 
+                    class="w-full px-3 py-2.5 border border-gray-200 rounded-md text-[14px] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#26428b] focus:ring-1 focus:ring-[#26428b] transition-colors" 
+                    placeholder="Kullanıcı adınızı girin" 
+                />
                 <span asp-validation-for="UserName" class="text-red-500 text-xs mt-1 block"></span>
             </div>
 
-            <div>
-                <label asp-for="Password" class="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
-                <input asp-for="Password" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 outline-none transition" />
+            <!-- Şifre Alanı -->
+            <div class="mb-3">
+                <label asp-for="Password" class="block text-[13px] font-medium text-gray-700 mb-1.5">Şifre</label>
+                <input 
+                    asp-for="Password" 
+                    type="password" 
+                    class="w-full px-3 py-2.5 border border-gray-200 rounded-md text-[14px] text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#26428b] focus:ring-1 focus:ring-[#26428b] transition-colors" 
+                    placeholder="Şifrenizi girin" 
+                />
                 <span asp-validation-for="Password" class="text-red-500 text-xs mt-1 block"></span>
             </div>
 
-            <div class="flex items-center justify-end">
-                <button type="button" onclick="location.href='/SendMail/ForgotPassword'" class="text-sm text-blue-600 hover:underline">Şifremi Unuttum</button>
+            <!-- Şifremi Unuttum -->
+            <div class="flex items-center justify-end mb-6">
+                <button type="button" onclick="location.href='/SendMail/ForgotPassword'" class="text-[13px] text-[#26428b] hover:text-[#1e3470] font-medium hover:underline transition-colors">Şifremi Unuttum</button>
             </div>
 
-            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition font-medium">Giriş Yap</button>
+            <!-- Giriş Yap Butonu -->
+            <button type="submit" class="w-full bg-[#9ca3af] hover:bg-[#8b929e] text-white font-semibold py-2.5 px-4 rounded-md text-[14px] transition-colors duration-200 shadow-sm">
+                Giriş Yap
+            </button>
             
-            <div class="relative py-4">
+            <!-- Kayıt Ol Ayracı -->
+            <div class="relative py-6">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-200"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500">Hesabınız yok mu?</span>
+                    <span class="px-3 bg-white text-[13px] text-gray-500">Hesabınız yok mu?</span>
                 </div>
             </div>
 
-            <button type="button" onclick="location.href='/register/register'" class="w-full bg-gray-50 text-gray-700 border border-gray-300 py-2 px-4 rounded-md hover:bg-gray-100 transition font-medium">
+            <!-- Kayıt Ol Butonu -->
+            <button type="button" onclick="location.href='/register/register'" class="w-full bg-white text-gray-700 border border-gray-300 hover:border-gray-400 py-2.5 px-4 rounded-md text-[14px] font-semibold transition-colors duration-200 shadow-sm">
                 Kayıt Ol
             </button>
 
+            <!-- Hata Mesajı (ViewBag) -->
             @if(ViewBag.message != null)
             {
-                <div class="mt-4 p-3 bg-red-50 text-red-600 rounded-md text-sm text-center">
+                <div class="mt-5 p-3 bg-red-50 border border-red-100 text-red-600 rounded-md text-[13px] font-medium text-center shadow-sm">
                     @ViewBag.message
                 </div>
             }
         </form>
+
     </div>
 
 </body>

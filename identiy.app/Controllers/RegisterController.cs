@@ -23,6 +23,13 @@ public class RegisterController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
+        // FluentValidation kurallarından biri bile başarısız olursa IsValid false döner
+        if (!ModelState.IsValid)
+        {
+            // Hatalarla birlikte aynı sayfayı geri döndür
+            return View(model); 
+        }
+        
         var newUser = new AppUser
         {
             UserName = model.Username,
